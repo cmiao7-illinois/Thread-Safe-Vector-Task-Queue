@@ -1,37 +1,29 @@
 
 
-# Custom STL Vector Container
+# Thread-Safe Vector& Task Queue
 
-The purpose of this project is to implement a custom version of the STL vector container in C++ using template programming. The custom vector container includes an implementation of an iterator class, which enables users to perform common operations such as element traversal, insertion, and deletion. Additionally, the implementation leverages functions from the Cstring library (such as `memcpy` and `memmove`) to significantly improve the speed of insertion and deletion operations by a factor of 100 or more.
+•	Designed a multi-thread-safe vector (Vector.h) data structure that supports iterator algorithms and allocator algorithms. 
+•	Optimized the process of element insertion and deletion in vector more than 100 times, using cstring library functions such as memcpy and memmove.
+•	Implemented a multi-thread task queue (chan.h) that supports cached and non-cached usage based on the multi-thread-safe vector. 
 
-## Features
-
-- Template to allow for vectors of any data type.
-- Custom iterator class that enables element traversal and manipulation.
-- Implementation of common vector operations such as push_back, pop_back, insert, erase, etc.
-- Optimized insertion and deletion operations using `memcpy` and `memmove` from the **cstring** library.
-- Dynamic allocation and resizing of the underlying array to allow for efficient use of memory.
-
-## Usage
-
-The custom vector container can be used in a similar way to the standard STL vector container. Here is a simple example:
+## Demo
 
 ```C++
-#include "stl/Vector.h"
-
-int main()
-{
-    Vector<int> vec;
-    vec.push_back(1);
-    vec.push_back(2);
-    vec.push_back(3);
-    for (Vector<int>::iterator it = vec.begin(); it != vec.end(); ++it) {
-        std::cout << *it << ' ';
+int main() {
+    Vector<int> v;
+    v.push_back(1);
+    v.push_back(2);
+    v.push_back(3);
+    for (Vector<int>::Iterator it = v.begin(); it != v.end();it++){
+        std::cout << *it << std::endl;
+    }
+    chan<int> ch(8);
+    while(!ch.is_closed()){
+        ch.push(1);
+        ch.push(2);
+        ch.pop();
+        ch.pop();
     }
     return 0;
 }
 ```
-
-This will output: `1 2 3`
-
-For more information on available operations and usage, refer to the header file `vector.hpp`.

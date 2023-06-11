@@ -1,3 +1,0 @@
-D:/STL-TEST/cmake-build-debug/CMakeFiles/STL_TEST.dir
-D:/STL-TEST/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/STL-TEST/cmake-build-debug/CMakeFiles/rebuild_cache.dir
